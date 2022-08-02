@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+case $# in
+0) echo "faltan argumentos"; #Valida que le hayan pasado los parametros necesarios, el cual debe ser por lo menos 1 directorio 
+exit 1
+;;
+esac
+
+if test -d $1;then
+cd $1 && { find . -type f -mtime +7 -exec rm -f -- {} \; ;} #Cambia al directorio indicado y elimina los archivos con fecha de creacion mayor a 7 días
+fi
